@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.codepathtraining.flicks.models.Movie;
+import com.codepathtraining.flicks.models.Config;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -41,6 +42,9 @@ public class MovieListActivity extends AppCompatActivity {
     RecyclerView rvMovies;
     //the adapter wired to the recyler view
     MovieAdapter adapter;
+    //image config
+    Config config;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,15 +112,14 @@ public class MovieListActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    JSONObject images = response.getJSONObject("images");
-                    //get image base url
-                    imageBaseUrl = images.getString("secure_base_url");
-                    //get the poster size
-                    JSONArray posterSizeOptions = images.getJSONArray("poster_sizes");
-                    //use the option at index 3 or s342 as a fallback
-                    posterSize = posterSizeOptions.optString(3, "w42");
+                    config = new Config(response);
                     Log.i(TAG, String.format("Loaded config " +
-                            "with imageBaseUrl %s and posterSize %s", imageBaseUrl, posterSize));
+                            "with imageBaseUrl %s and posterSize %s",
+                            config.getImageBaseUrl(),
+                            config.getPosterSize()));
+                    //pass config to adapter
+                    adapter.setConfig(config);
+
                     //get now playing movies
                     getNowPlaying();
                 } catch (JSONException e) {

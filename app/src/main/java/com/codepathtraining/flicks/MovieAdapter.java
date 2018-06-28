@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.codepathtraining.flicks.models.Config;
 import com.codepathtraining.flicks.models.Movie;
 
 import java.util.ArrayList;
@@ -16,10 +18,21 @@ import java.util.ArrayList;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     //list of movies
     ArrayList<Movie> movies;
+    Config config;
+    //context
+    Context context;
 
     //initialize with list
     public MovieAdapter(ArrayList<Movie> movies){
         this.movies = movies;
+    }
+
+    public Config getConfig() {
+        return config;
+    }
+
+    public void setConfig(Config config) {
+        this.config = config;
     }
 
     //creates and inflates a new view
@@ -27,7 +40,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         //get context and create the inflater
-        Context context = viewGroup.getContext();
+        context = viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         //create the view using the item_movie layout
         View movieView = inflater.inflate(R.layout.item_movie, viewGroup, false);
@@ -43,6 +56,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         //populate the view with the movie data
         holder.tvTitle.setText(movie.getTitle());
         holder.tvOverview.setText(movie.getOverview());
+
+        //build url for poster image
+        String imageUrl = config.getImageUrl(config.getPosterSize(), movie.getPosterpath());
+
+        //load image using glide
+        Glide.with(context).load(imageUrl).
+                placeholder(R.drawable.flicks_movie_placeholder).
+                error(R.drawable.flicks_movie_placeholder).
+                into(holder.ivPosterImage);
     }
 
     //returns the total number of items in the list
