@@ -13,11 +13,9 @@ public class Config {
     String backdropSize;
 
 
-
     public Config(JSONObject object) throws JSONException{
         JSONObject images = object.getJSONObject("images");
         //get image base url
-
         imageBaseUrl = images.getString("secure_base_url");
         //get the poster size
         JSONArray posterSizeOptions = images.getJSONArray("poster_sizes");
