@@ -8,12 +8,14 @@ public class Movie {
     private String title;
     private String overview;
     private String posterpath; //only the path
+    private String backdropPath;
 
     //init from JSON data
     public Movie(JSONObject object) throws JSONException{
         title = object.getString("title");
         overview = object.getString("overview");
         posterpath = object.getString("poster_path");
+        backdropPath = object.getString("backdrop_path");
     }
 
     public String getTitle() {
@@ -24,7 +26,10 @@ public class Movie {
         return overview;
     }
 
-    public String getPosterpath() {
+    public String getPosterPath() {
         return posterpath;
+    }
+    public String getBackdropPath(){
+        return backdropPath;
     }
 }
