@@ -84,7 +84,10 @@ public class MovieListActivity extends AppCompatActivity {
                     JSONArray results = response.getJSONArray("results");
                     //iterate through result set and create Movie object
                     for(int i = 0; i < results.length(); i++){
-                        Movie movie = new Movie(results.getJSONObject(i));
+                        JSONObject obj = results.getJSONObject(i);
+                        Integer id = obj.getInt("id");
+                        //make another API call for video url
+                        Movie movie = new Movie(obj);
                         movies.add(movie);
                         //notify adapter row added
                         adapter.notifyItemInserted(movies.size() -1);
