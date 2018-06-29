@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/playVideo"
+        android:layout_below="@+id/video_holder"
         android:text="Movie Title"
         android:textAppearance="@android:style/TextAppearance.Large" />
 
@@ -37,11 +37,25 @@
         android:numStars="5"
         android:stepSize="0.5" />
 
-    <ImageView
-        android:id="@+id/playVideo"
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="220dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="@drawable/flicks_backdrop_placeholder" />
+        android:layout_height="wrap_content"
+        android:id="@+id/video_holder">
+
+        <ImageView
+            android:id="@+id/playVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            app:srcCompat="@drawable/flicks_backdrop_placeholder" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/play_button" />
+
+    </FrameLayout>
+
+
 </RelativeLayout>
