@@ -24,7 +24,12 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* :heavy_check_mark: Added "polish" goals included at end of Youtube activity.
+* :heavy_check_mark: Added "polish" goals included at end of Youtube activity. 
+  * Display a “play” overlay image over the backdrop on the details activity as a visual cue to the user
+  * Take a closer look at the data returned from the videos endpoint, and instead of just using the first video:
+  * Use the site value to filter out any videos that aren’t YouTube, as these would not work with the player view
+  * Use the size value to choose the best video to show based on your app’s bounds
+  * Declare a new field on Movie to store the video id and use it to avoid fetching the same value more than once
 * :heavy_check_mark: Embeded the Youtube video within the details page instead of having the user click on image to redirect to a new page.
 
 ## Video Walkthrough
@@ -40,10 +45,13 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
+I found the Youtube part of the app, especially the embedding within the details page, to be the most diffucult, but really satisfying and educational. 
+
 ## Open-source libraries used
 
 - [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
 - [Glide](https://github.com/bumptech/glide) - Image loading and caching library for Android
+- Butterknife
 
 ## License
 
