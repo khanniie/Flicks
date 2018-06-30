@@ -8,11 +8,11 @@ Time spent: 17.5 hours spent in total
 
 The following **required** functionality is completed:
 
-* :heavy_check_mark: User can **scroll through current movies** from the Movie Database API
+* [x] User can **scroll through current movies** from the Movie Database API
 
 The following **optional** features are implemented:
 
-* :heavy_check_mark: For each movie displayed, user can see the following details:
+* [x] For each movie displayed, user can see the following details:
   * [x] Title, Poster Image, Overview (Portrait mode)
   * [x] Title, Backdrop Image, Overview (Landscape mode)
 * [x] Display a nice default [placeholder graphic](https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library#advanced-usage) for each image during loading
