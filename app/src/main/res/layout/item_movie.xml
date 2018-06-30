@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="13dp">
         <ImageView
             android:id="@+id/ivPosterImage"
             android:layout_width="90dp"
@@ -15,39 +15,42 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
             app:srcCompat="@android:color/black" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/ivPosterImage"
+            android:fontFamily="@font/robotobold"
             android:text="Movie Title"
-            android:textColor="#FFFFFF"
             android:textAppearance="@android:style/TextAppearance.Large"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/tvOverview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_below="@+id/tvTitle"
             android:layout_toRightOf="@+id/ivPosterImage"
-            android:textColor="#FFFFFF"
+            android:fontFamily="@font/robotolight"
             android:text="Movie Overview and synopsis"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:textColor="#FFFFFF" />
     </RelativeLayout>
 
 
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
-        android:background="#BBBBBB"
-        android:layout_height="1dp"
+        android:background="#66FFFCAF"
+        android:layout_height="2dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true" />
 </RelativeLayout>
