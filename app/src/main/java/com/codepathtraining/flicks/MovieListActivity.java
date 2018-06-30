@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.codepathtraining.flicks.models.Movie;
 import com.codepathtraining.flicks.models.Config;
+import com.codepathtraining.flicks.models.Movie;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -31,6 +31,8 @@ public class MovieListActivity extends AppCompatActivity {
     public final static String API_KEY_PARAM = "api_key";
     //tag for logging from this activity
     public final static String TAG = "MovieListActivity";
+
+    //public static String api_key_value;
 
     //instance fields
     AsyncHttpClient client;
@@ -87,7 +89,7 @@ public class MovieListActivity extends AppCompatActivity {
                         JSONObject obj = results.getJSONObject(i);
                         Integer id = obj.getInt("id");
                         //make another API call for video url
-                        Movie movie = new Movie(obj);
+                        Movie movie = new Movie(obj, getString(R.string.api_key));
                         movies.add(movie);
                         //notify adapter row added
                         adapter.notifyItemInserted(movies.size() -1);
@@ -110,6 +112,8 @@ public class MovieListActivity extends AppCompatActivity {
         //create URL
         String url = API_BASE_URL + "/configuration";
         //set request param
+        //api_key_value = Resources.getSystem().getString(android.R.string.)
+
         RequestParams params = new RequestParams();
         params.put(API_KEY_PARAM, getString(R.string.api_key)); //API
         //execute GET request expecting a JSON obj response

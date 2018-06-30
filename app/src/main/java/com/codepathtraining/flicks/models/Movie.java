@@ -32,40 +32,41 @@ public class Movie {
     public Movie() {}
 
     //init from JSON data
-    public Movie(JSONObject object) throws JSONException{
+    public Movie(JSONObject object, String key) throws JSONException{
         title = object.getString("title");
         overview = object.getString("overview");
         posterpath = object.getString("poster_path");
         backdropPath = object.getString("backdrop_path");
         voteAverage = object.getDouble("vote_average");
         id = object.getInt("id");
-        getVideoUrl(id + "");
+        getVideoUrl(id + "", key);
     }
 
     // going to make calls to video endpoint here, because calling it in MovieListActivity might result in a null url
     // when object is constructed if
     //the api call hasn't returned yet.
-    private void getVideoUrl(String id) {
+    private void getVideoUrl(String id, String key) {
         AsyncHttpClient client = new AsyncHttpClient();
         //create the url
         String url = API_BASE_URL + "/movie/" + id +"/videos";
         //set request parameters
         RequestParams params = new RequestParams();
-        params.put(API_KEY_PARAM, "200772b476fec304e2f371ce0e3d5ec7");
+        params.put(API_KEY_PARAM, key);
         //execute GET request expecting a JSON object
         client.get(url, params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //load results into movies list
                 try {
+                    String url = "NONE";
                     JSONArray results = response.getJSONArray("results");
-
-                    if(results.length() < 1){
-                        setUrl("NONE");
+                    for(int i = 0; i < results.length(); i ++){
+                        if(results.getJSONObject(i).getString("site").equals("YouTube")){
+                            url = results.getJSONObject(i).getString("key");
+                            break;
+                        }
                     }
-                    else{
-                        setUrl(results.getJSONObject(0).getString("key"));
-                    }
+                    setUrl(url);
 
                 } catch (JSONException e) {
                     Log.e("MOVIE_CLASS", "couldn't get video url from JSON when making movie class!");

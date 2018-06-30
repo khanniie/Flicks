@@ -3,7 +3,10 @@ package com.codepathtraining.flicks.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
+
+@Parcel
 public class Config {
     //base url for loading images
     String imageBaseUrl;
@@ -12,6 +15,7 @@ public class Config {
     //the backdrop size to use when fetching images
     String backdropSize;
 
+    public Config() {}
 
     public Config(JSONObject object) throws JSONException{
         JSONObject images = object.getJSONObject("images");
@@ -31,15 +35,13 @@ public class Config {
     public String getImageUrl(String size, String path){
         return String.format("%s%s%s", imageBaseUrl, size, path); //concats all
     }
-
-    public String getImageBaseUrl() {
-        return imageBaseUrl;
-    }
-
+    public String getImageBaseUrl() { return imageBaseUrl; }
     public String getPosterSize() {
         return posterSize;
     }
     public String getBackdropSize() {
         return backdropSize;
     }
+
+
 }
