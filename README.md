@@ -25,9 +25,8 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 * [x] Embeded the Youtube video within the details page instead of having the user click on image to redirect to a new page. Additionally, if there is no video available, it will instead display the typical backdrop image instead.
-* [x] Added "polish" goals included at end of Youtube activity. 
+* [x] Added these "polish" goals included at end of Youtube activity. 
   * Use the site value to filter out any videos that aren’t YouTube, as these would not work with the player view
-  * Use the size value to choose the best video to show based on your app’s bounds
   * Declare a new field on Movie to store the video id and use it to avoid fetching the same value more than once
 
 
